@@ -1,0 +1,23 @@
+{
+  "pipeline_id": "idea_evaluation",
+  "name": "Startup / Idea Evaluation",
+  "version": "v1",
+  "steps": [
+    {
+      "id": "research",
+      "agent": "web_research_agent",
+      "policy": { "requires_approval": false }
+    },
+    {
+      "id": "approve_research",
+      "agent": "approval_gate",
+      "policy": { "requires_approval": true }
+    },
+    {
+      "id": "evaluation",
+      "agent": "evaluator_agent",
+      "policy": { "requires_approval": false }
+    }
+  ]
+}
+

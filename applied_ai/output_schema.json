@@ -1,0 +1,8 @@
+{
+  "summary": "string",
+  "score": "number (0-10)",
+  "strengths": ["string"],
+  "risks": ["string"],
+  "next_actions": ["string"]
+}
+
