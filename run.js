@@ -1,3 +1,5 @@
+require("./server");
+
 const fs = require("fs");
 const { runPipeline } = require("./runtime/orchestrator");
 
@@ -10,9 +12,8 @@ const input = {
   urls: ["https://example.com"]
 };
 
-runPipeline(pipeline, input).then((output) => {
-  console.log("\nFINAL OUTPUT:");
-  console.log(JSON.stringify(output, null, 2));
-});
-
+// Delay so browser can connect first
+setTimeout(() => {
+  runPipeline(pipeline, input);
+}, 1000);
 

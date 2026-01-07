@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AIC – AG-UI Demo</title>
+  <style>
+    body { font-family: monospace; background: #111; color: #0f0; padding: 20px; }
+    button { padding: 10px; margin: 10px 0; }
+    pre { background: #000; padding: 10px; }
+  </style>
+</head>
+<body>
+
+<h2>Agent Integration Centre – Live Run</h2>
+
+<button onclick="approve()">Approve</button>
+
+<h3>Events</h3>
+<pre id="events"></pre>
+
+<h3>Final Output</h3>
+<pre id="output"></pre>
+
+<script>
+  const eventsEl = document.getElementById("events");
+  const outputEl = document.getElementById("output");
+
+  const source = new EventSource("/events");
+
+  source.onmessage = (e) => {
+    const event = JSON.parse(e.data);
+    eventsEl.textContent += JSON.stringify(event, null, 2) + "\n\n";
+
+    if (event.type === "completed") {
+      outputEl.textContent = JSON.stringify(event.output, null, 2);
+    }
+  };
+
+  function approve() {
+    fetch("/approve");
+  }
+</script>
+
+</body>
+</html>
+
